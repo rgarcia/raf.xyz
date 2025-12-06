@@ -1,0 +1,20 @@
+---
+import { marked } from "marked";
+
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+const response = await fetch(url);
+if (!response.ok) {
+  throw new Error(`Failed to fetch gist: ${response.status}`);
+}
+
+const content = await response.text();
+const html = await marked(content);
+---
+
+<blockquote class="gist-quote" set:html={html} />
+

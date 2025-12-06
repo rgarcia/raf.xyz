@@ -1,0 +1,49 @@
+---
+title: "How I keep up with AI-generated PRs"
+description: "Use AI to review AI-generated code"
+date: "Dec 5 2025"
+draft: false
+---
+
+import MarkdownGistQuote from "@components/MarkdownGistQuote.astro";
+
+AI coding assistants have shifted the bottleneck in software development. Writing code is now trivially fast. Reviewing it is not.
+
+Purely automated PR review tools like Greptile or Cursor's BugBot help, but they're not sufficient. They catch bugs, but you can't fully trust them. More importantly, they miss the point of code review entirely. PRs aren't just about correctness—they're about socializing changes with your team. A good review ensures everyone understands what's changing and why.
+
+As CTO of a small but growing team, I want to stay close to the code as long as possible. That means I need a workflow that lets me review PRs quickly without sacrificing depth. Here's what I've landed on.
+
+## Setup
+
+You'll need:
+
+- Cursor (or any IDE that supports MCP and can shell out to a CLI)
+- The [gh CLI](https://cli.github.com/), logged in (`gh auth login`)
+- Optionally, the [GitHub Pull Requests](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) extension. I can't stand GitHub's web UI—I want to see diffs in my editor while planning my review.
+
+## The Prompt
+
+The key insight is to have the AI generate a _plan_ for your review, not the review itself. Put Cursor in plan mode, then run this prompt ([gist](https://gist.github.com/rgarcia/742d8a91b051a57c51dcab8aba6d352e), [add to cursor](/add-to-cursor/pr-review)):
+
+<MarkdownGistQuote url="https://gist.githubusercontent.com/rgarcia/742d8a91b051a57c51dcab8aba6d352e/raw/pr-review.md" />
+
+## Iterate on the Plan
+
+Split your panes: plan on the left, PR diff (via the extension) on the right. Now you can explore the code while refining your review plan.
+
+Push back on the AI. Tweak the language. Remove comments that aren't necessary. Add ones it missed. Have it research questions you might have. The plan is a draft, not a finished product.
+
+When you're satisfied, hit Cursor's "Build" button to execute the plan.
+
+## Iterate on the Prompt
+
+After each review, I run a meta-prompt to improve my workflow:
+
+> In light of some of the back and forth in this chat can you edit my PR review prompt in @.cursor/commands/pr-review.md to reflect anything that might help future pr review plans get to a good place sooner?
+
+This closes the loop. Each review makes the next one better.
+
+## Conclusion
+
+This workflow is still evolving, but it's already cut my review time significantly. The AI handles the tedious parts—summarizing changes, identifying potential issues—while I stay in control of the final output. Human in the loop, AI doing the heavy lifting.
+
