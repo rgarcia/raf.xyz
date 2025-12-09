@@ -1,0 +1,3 @@
+[submodule "gists/pr-review"]
+	path = gists/pr-review
+	url = git@gist.github.com:742d8a91b051a57c51dcab8aba6d352e.git
