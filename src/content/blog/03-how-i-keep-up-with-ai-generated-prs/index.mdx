@@ -19,6 +19,7 @@ You'll need:
 
 - Cursor (or any IDE that supports MCP and can shell out to a CLI)
 - The [gh CLI](https://cli.github.com/), logged in (`gh auth login`)
+- Optionally, the [GitHub MCP Server](https://github.com/github/github-mcp-server). The prompt that follows has suggestions for using this instead of the gh CLI if available.
 - Optionally, the [GitHub Pull Requests](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) extension. I can't stand GitHub's web UI—I want to see diffs in my editor while planning my review.
 
 ## The Prompt
@@ -29,7 +30,7 @@ The key insight is to have the AI generate a _plan_ for your review, not the rev
 
 ## Iterate on the Plan
 
-Split your panes: plan on the left, PR diff (via the extension) on the right. Now you can explore the code while refining your review plan.
+Split your panes: plan on the left, PR diff (via the extension) on the right. Now you can explore the code while refining your review plan. You can also manually add comments using the GitHub Pull Requests extension, and the prompt should pick up on this pending review and add to it.
 
 Push back on the AI. Tweak the language. Remove comments that aren't necessary. Add ones it missed. Have it research questions you might have. The plan is a draft, not a finished product.
 
