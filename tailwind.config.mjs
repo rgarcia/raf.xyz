@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        serif: ["Lora", ...defaultTheme.fontFamily.serif],
+        sans: ["CursorGothic", ...defaultTheme.fontFamily.sans],
+        serif: ["CursorGothic", ...defaultTheme.fontFamily.serif],
+        mono: ["CursorGothic", ...defaultTheme.fontFamily.mono],
       },
       // remove the implicit quoting of blockquotes
       typography: {
